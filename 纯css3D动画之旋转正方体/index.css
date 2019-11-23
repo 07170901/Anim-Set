@@ -1,0 +1,158 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.box {
+	/* 视图距元素的距离 相当于摄像机 */
+	perspective: 1000px;
+
+}
+
+/* 盒子，包含外大正方体和内小正方体 */
+.cube {
+	width: 200px;
+	height: 200px;
+	margin: 200px auto;
+	position: relative;
+	/* 让转换的子元素保留3D转换 */
+	transform-style: preserve-3d;
+	/* 旋转动画 */
+	animation: spin 10s linear 0s infinite;
+}
+
+/* 外大正方体 */
+.cube>div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	left: 0;
+	top: 0;
+	/* 
+			transition里主要包括四个属性值：
+			过渡或CSS属性：可以是border, margin, padding, font, color, background，transform等
+			过渡需要的时间：以秒或毫秒为单位的数据，如1.0s, .4s(0.4s), 300ms等
+			指定的过渡函数：如linear, ease-in, ease-out等 
+			过渡的延迟时间：以秒或毫秒为单位的数据，如1.0s, .4s(0.4s), 300ms等
+			*/
+	/* 这里使用为了让鼠标放上去会匀速扩开 */
+	transition: transform 0.4s linear;
+}
+
+/* 外大正方体的各个面 start */
+.front-side {
+	background-color: rgba(29, 191, 151, 0.5);
+	transform: rotateY(0deg) translateZ(100px);
+}
+
+.left-side {
+	background-color: rgba(38, 188, 213, 0.5);
+	transform: rotateY(90deg) translateZ(-100px);
+}
+
+.back-side {
+	background-color: rgba(119, 52, 96, 0.5);
+	transform: rotateY(180deg) translateZ(100px);
+}
+
+.right-side {
+	background-color: rgba(224, 160, 158, 0.5);
+	transform: rotateY(270deg) translateZ(-100px);
+}
+
+.top-side {
+	background-color: rgba(255, 66, 93, 0.5);
+	transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom-side {
+	background-color: rgba(253, 218, 4, 0.5);
+	transform: rotateX(90deg) translateZ(-100px);
+}
+
+/* 外大正方体的各个面 end */
+/* 内小正方体 */
+.cube>span {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	/*居正中 */
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	background-size: 100px 100px;
+	background-color: snow;
+	opacity: 0.5;
+}
+
+/* 内小正方体的各个面 start */
+.small-front-side {
+	
+	background: url(img/p1.png) no-repeat center center;
+	transform: rotateY(0deg) translateZ(50px);
+}
+
+.small-left-side {
+	background: url(img/p2.png) no-repeat center center;
+	transform: rotateY(90deg) translateZ(-50px);
+}
+
+.small-back-side {
+	background: url(img/p3.png) no-repeat center center;
+	transform: rotateY(180deg) translateZ(50px);
+}
+
+.small-right-side {
+	background: url(img/p4.png) no-repeat center center;
+	transform: rotateY(270deg) translateZ(-50px);
+}
+
+.small-top-side {
+	background: url(img/p5.png) no-repeat center center;
+	transform: rotateX(90deg) translateZ(50px);
+}
+
+.small-bottom-side {
+	background: url(img/p6.png) no-repeat center center;
+	transform: rotateX(90deg) translateZ(-50px);
+}
+
+/* 内小正方体的各个面 end */
+/*当悬停在外大正方体时， 各个面会扩开*/
+.cube:hover .front-side {
+	transform: rotateY(0deg) translateZ(150px);
+}
+
+.cube:hover .left-side {
+	transform: rotateY(90deg) translateZ(-150px);
+}
+
+.cube:hover .back-side {
+	transform: rotateY(180deg) translateZ(150px);
+}
+
+.cube:hover .right-side {
+	transform: rotateY(270deg) translateZ(-150px);
+}
+
+.cube:hover .top-side {
+	transform: rotateX(90deg) translateZ(150px);
+}
+
+.cube:hover .bottom-side {
+	transform: rotateX(90deg) translateZ(-150px);
+}
+
+/* 动画组 */
+/* 整体旋转 */
+@keyframes spin {
+	0% {
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+
+	100% {
+		transform: rotateX(360deg) rotateY(360deg);
+	}
+}
